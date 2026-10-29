@@ -97,9 +97,9 @@ def get_client(client_id):
 
 
 def search_clients(name):
-    # ❌ Vulnerabilidade: Concatenação direta de parâmetro de entrada na consulta SQL
-    query = f"SELECT * FROM clients WHERE full_name LIKE '%{name}%' ORDER BY id"
-    rows = get_db().execute(query).fetchall()
+    # Vulnerabilidade substituída por parâmetro
+    query = "SELECT * FROM clients WHERE full_name LIKE ? ORDER BY id"
+    rows = get_db().execute(query, (f"%{name}%",)).fetchall()
     return [row_to_dict(r) for r in rows]
 
 
