@@ -11,7 +11,7 @@ WORKDIR /app
 
 # Instala pacotes
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+    build-essential=12.12 \
     && rm -rf /var/lib/apt/lists/*
 
 # Ambiente virtual
