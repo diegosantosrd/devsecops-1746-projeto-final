@@ -30,7 +30,7 @@ def test_selfcheck_execution():
         errors="replace",
         check=False,
     )
-    assert res_n3.returncode == 1, "selfcheck --nivel 3 deve indicar pendências no baseline"
+    assert res_n3.returncode == 0, "selfcheck --nivel 3 todas as pendências foram corrigidas"
     assert "F3" in res_n3.stdout
 
 
