@@ -45,7 +45,12 @@ def create_app(test_config=None):
         """Adiciona cabeçalhos de segurança a todas as respostas."""
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "DENY"
-        response.headers["Content-Security-Policy"] = "default-src 'self'"
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'",
+            "frame-ancestors 'none'",
+            "form-action 'self'",
+            "base-uri 'self'",
+        )
         response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
         response.headers["Referrer-Policy"] = "no-referrer"
         return response
