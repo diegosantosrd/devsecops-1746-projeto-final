@@ -66,6 +66,7 @@ def create_app(test_config=None):
             "payment=(), "
             "usb=()"
         )
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
         return response
 
     return app
