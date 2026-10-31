@@ -18,6 +18,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
+# Correção de CVE-2026-23949 e CVE-2026-24049
+RUN pip install --no-cache-dir --upgrade "setuptools==82.0.1"
+
 # Copia e instala as dependências
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -30,6 +33,9 @@ WORKDIR /app
 # Atualiza o sistema e remove cache do apt para economizar espaço
 RUN apt-get update && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
+
+# Correção de CVE-2026-23949 e CVE-2026-24049
+RUN pip install --no-cache-dir --upgrade "setuptools==82.0.1"
 
 # Criação do grupo e usuário não-root
 RUN groupadd -g 10001 nonroot && \
