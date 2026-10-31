@@ -47,8 +47,8 @@ def create_app(test_config=None):
         response.headers["X-Frame-Options"] = "DENY"
         response.headers["Content-Security-Policy"] = (
             "default-src 'self'; "
-            "script-src 'self' 'unsafe-inline'; "
-            "style-src 'self' 'unsafe-inline'; "
+            "script-src 'self'; "
+            "style-src 'self'; "
             "img-src 'self' data:; "
             "frame-ancestors 'none'; "
             "form-action 'self'; "
